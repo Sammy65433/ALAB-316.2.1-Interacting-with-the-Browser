@@ -1,96 +1,48 @@
-const gridCntainer = document.querySelector("#grid-container");
+// select the div with id grid
+const grid = document.getElementById('grid');
 
-// Write a loop that executes exactly 100 times (iterating from 1 to 100).
+// create the game grid
 for (let i = 1; i <= 100; i++) {
-    // Make a box each time
-    const box = document.createElement("div");
-    // document.createElement.appendChild()
-    box.classList.add("box");
-    box.textContent = i;
-    gridCntainer.appendChild(box);
-    if (i % 2 === 0) {
-        box.style.backgroundColor = "lightcoral";
+    // create a div in memory
+    const div = document.createElement('div');
+    div.classList.add('box');
+    div.textContent = i;
+    // add the div to the page
+    grid.appendChild(div);
+}
+
+// generate a number from 1-100
+const randomNumber = 50;
+
+// number of guesses
+let numOfGuesses = -1;
+
+// create the game loop which runs as long as the user has a guess remaining
+while (numOfGuesses >= 0) {
+    // First Round of Game
+    
+    // ask the user for a number (turn the string input into an actual number)
+    const guess = Number(prompt('Guess a number from 1-100'))
+    
+    if (guess === randomNumber) {
+        alert(`The number is ${guess}. You win!`)
+        // we want the game loop to end so we break
+        break;
+
+    // either the guessed number is too low
+    } else if (guess < randomNumber) {
+        alert(`The number ${guess} is too low! Guess again. \n ${numOfGuesses} guesses remain.`)
+        
+     // or the guessed number is too high
     } else {
-        // box.style.backgroundColor = "lightblue" // being more specific
+        alert(`The number ${guess} is too high! Guess again \n ${numOfGuesses} guesses remain.`)
     }
-}
 
-// Create a simple guessing game that pushes users toward the correct answer
-// in some iterative way. The game does not need to be practical or
-// complicated.
+    // check if their at zero guesses
+    if (numOfGuesses === 0) {
+        alert('No more guesses. You lose!')
+    }
 
-// Use window object methods to gather input from the user and display
-// information to the user.
-// Use DOM manipulation to give a visual indication of the game's
-// progress in some way.
-
-const secretnumber = Math.floor(Math.random() * 100) + 1;
-// console.log(secretnumber);
-
-let numOfGuesses = 10;
-
-
-// Prompt to open guessing a number
-const guess = Number(prompt("guess a number between 1 and 100"));
-
-if (guess === secretnumber) {
-    alert(`The number is ${guess}. You win!`)
-} else if (guess < secretnumber) {
-    alert(`The number is ${guess} is too low! Guess again!`)
-
-} else {
-    alert(`The number is ${guess} is too High! Guess again!`)
-}
-
-
-// Create the game loop
-while(numOfGuesses >= 0) {
-// console.log(numOfGuesses)
-const guess = Number(prompt("guess a number between 1 and 100"));
-
-if (guess === secretnumber) {
-    alert(`The number is ${guess}. You win!`)
-    break;
-
-} else if (guess < secretnumber) {
-    alert(`The number is ${guess} is too low! Guess again! \n ${numOfGuesses} guesses remaining`)
-
-} else {
-    alert(`The number is ${guess} is too High! Guess again! \n ${numOfGuesses} guesses remaining`)
-}
-// check if their at zero guesses 
-if (numOfGuesses === 0) {
-    alert('No More Guesses. You Lose!')
-}
-
-    // decrement number of guess to break the loop
+    // decrement number of guesses so we eventually break the loop
     numOfGuesses--
 }
-
-    // if (guess < secretnumber)
-
-
-// Pick a number between 1 to 100
-
-
-// let secretnumber = 25
-// // let guessleft = 10
-// // while (guessleft > 0) {
-// //     let userinput = window.prompt(`Attempts Left: ${guessleft}`);
-// //
-// for (let i = 3; i >= 0; i--) {
-//     window.prompt(`Attempts Left: ${i}`);
-//     userinput = Number(userinput);
-
-//     if (userinput === secretnumber) {
-//         window.alert("Correct, You Guess the Number");
-//         break;
-//     } else if (userinput < secretnumber) {
-//         window.alert("Too Low!!!!");
-//     } else if (userinput > secretnumber){
-//         window.alert("Too High!!!!");
-//     }
-// }
-// guessleft --
-
-// if less than secret number
