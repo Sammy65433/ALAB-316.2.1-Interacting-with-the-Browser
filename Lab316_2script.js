@@ -1,5 +1,5 @@
 // select the div with id grid
-const grid = document.getElementById('grid');
+const grid = document.getElementById('#grid');
 
 // create the game grid
 for (let i = 1; i <= 100; i++) {
@@ -11,14 +11,17 @@ for (let i = 1; i <= 100; i++) {
     grid.appendChild(div);
 }
 
-// generate a number from 1-100
-const randomNumber = 50;
 
+// generate a number from 1-100
+const randomNumber = Math.floor((Math.random() * 100) + 1);
 // number of guesses
 let numOfGuesses = -1;
 
+setTimeout(playGameRound, 500)
+
+function playGameRound () { 
 // create the game loop which runs as long as the user has a guess remaining
-while (numOfGuesses >= 0) {
+// while (numOfGuesses >= 0) {
     // First Round of Game
     
     // ask the user for a number (turn the string input into an actual number)
@@ -27,11 +30,12 @@ while (numOfGuesses >= 0) {
     if (guess === randomNumber) {
         alert(`The number is ${guess}. You win!`)
         // we want the game loop to end so we break
-        break;
+        return;
 
     // either the guessed number is too low
     } else if (guess < randomNumber) {
         alert(`The number ${guess} is too low! Guess again. \n ${numOfGuesses} guesses remain.`)
+        // turn all boxes that represent numbers less than the guessed number 
         
      // or the guessed number is too high
     } else {
@@ -41,8 +45,11 @@ while (numOfGuesses >= 0) {
     // check if their at zero guesses
     if (numOfGuesses === 0) {
         alert('No more guesses. You lose!')
+        return; //working like a break statement to end function
     }
 
     // decrement number of guesses so we eventually break the loop
     numOfGuesses--
+
+    setTimeout(playGameRound,500)
 }
