@@ -1,0 +1,41 @@
+# Number‑Guess Grid Game
+
+A tiny browser game that draws a 100‑cell grid and lets the player guess a hidden number.
+After each guess the cells that are no longer possible turn red; the winning cell turns green.
+The player has 3 guesses.
+
+---  
+
+## Table of Contents
+1. Demo
+2. How it works
+3. Installation / Running locally
+4. File structure
+5. Game rules (for the player)
+6. Code overview (for developers)
+7. Customization tips
+8. License & Author
+
+---  
+
+## 1. Demo
+Open `Lab316html_2.html` in a browser. The grid appears and a prompt asks for a guess.
+
+---  
+
+## 2. How it works
+1. **Create the grid** – 100 `<div class="box">` elements are generated and appended to a container with id `grid`.
+2. **Pick a secret number** – `randomNumber` holds the hidden value (currently hard‑coded to `55`).
+3. **Game loop** – `playGameRound()` is called recursively (via `setTimeout`) while the player still has guesses.
+4. **User input** – `prompt()` collects a numeric guess, `Number()` converts the string to a number.
+5. **Feedback**  
+   * Correct guess → alert win, color the winning cell green, end the loop.  
+   * Too low / too high → alert the hint, color all cells that can be eliminated red.
+6. **Guess counter** – `numOfGuesses` starts at `3` and decrements after each round. When it reaches `0` the game ends with a loss.
+
+---  
+
+## 3. Installation / Running locally
+git clone https://github.com/Sammy65433/ALAB-316.2.1-Interacting-with-the-Browser
+
+
